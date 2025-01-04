@@ -1,0 +1,171 @@
+﻿@model Product
+@{
+	ViewData["Title"] = "ProductCreate";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="row">
+
+	<div class="col-md-2"></div>
+
+	<div class="col-md-8 ">
+
+		<!-- BEGIN SAMPLE FORM PORTLET-->
+		<div class="portlet box purple ">
+			<div class="portlet-title">
+				<div class="caption">
+					ÜRÜN GİRİŞ FORMU
+				</div>
+
+			</div>
+			<div class="portlet-body form">
+				<form class="form-horizontal" role="form" action="/Admin/ProductCreate" method="post">
+					<div class="form-body">
+
+
+						<div class="form-group">
+							@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+							<label class="col-md-3 control-label" asp-for="ProductName"></label>
+							<div class="col-md-9">
+								<input type="text" class="form-control input-lg" placeholder="Large Input" asp-for="ProductName">
+								<span asp-validation-for="ProductName" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+							<label class="col-md-3 control-label" asp-for="UnitPrice"></label>
+							<div class="col-md-9">
+								<input type="text" class="form-control input-lg" placeholder="Large Input" asp-for="UnitPrice">
+								<span asp-validation-for="UnitPrice" class="text-danger"></span>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">Kategori Seçiniz</label>
+						<div class="col-md-9">
+
+							@*class="form-control input-lg"*@
+							@Html.DropDownList("CategoryID", (IEnumerable<SelectListItem>)ViewData["categoryList"], "Seçiniz", new { @class = "form-control input-lg", required = "required" })
+
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">Marka Seçiniz</label>
+						<div class="col-md-9">
+
+							@*class="form-control input-lg"*@
+							@Html.DropDownList("SupplierID", (IEnumerable<SelectListItem>)ViewData["supplierList"], "Seçiniz", new { @class = "form-control input-lg", required = "required" })
+
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">Statü Seçiniz</label>
+						<div class="col-md-9">
+
+							@*class="form-control input-lg"*@
+							@Html.DropDownList("StatusID", (IEnumerable<SelectListItem>)ViewData["statusList"], "Seçiniz", new { @class = "form-control input-lg", required = "required" })
+
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+						<label class="col-md-3 control-label" asp-for="Stock"></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control input-lg" placeholder="Stock" asp-for="Stock" required onkeypress="return numberonly(this, event);">
+
+							<span asp-validation-for="Stock" class="text-danger"></span>
+						</div>
+					</div>
+
+
+
+					<div class="form-group">
+						@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+						<label class="col-md-3 control-label" asp-for="Discount"></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control input-lg" placeholder="indirim" asp-for="Discount" required onkeypress="return numberonly(this, event);">
+							<span asp-validation-for="Discount" class="text-danger"></span>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+						<label class="col-md-3 control-label" asp-for="Keywords"></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control input-lg" placeholder="indirim" asp-for="Keywords">
+							<span asp-validation-for="Keywords" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+						<label class="col-md-3 control-label" asp-for="KDV"></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control input-lg" placeholder="Kdv" asp-for="KDV" required onkeypress="return numberonly(this, event);">
+							<span asp-validation-for="KDV" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+						<label class="col-md-3 control-label" asp-for="Related"></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control input-lg" placeholder="Buna bakanlar" asp-for="Related">
+							<span asp-validation-for="Related" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+						<label class="col-md-3 control-label" asp-for="Notes"></label>
+						<div class="col-md-9">
+							<input type="text" class="form-control input-lg" placeholder="Not" asp-for="Notes">
+							<span asp-validation-for="Notes" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+
+						<label class="col-md-3 control-label" asp-for="PhotoPath"></label>
+						<div class="col-md-9">
+							<input type="file" class="form-control input-lg" placeholder="Resim Seçiniz" asp-for="PhotoPath">
+							<span asp-validation-for="PhotoPath" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">Aktif mi</label>
+						<div class="col-md-9">
+							<input asp-for="Active" class="form-control input-lg" />
+							<span asp-validation-for="Active" class="text-danger"></span>
+
+						</div>
+					</div>
+
+					<div class="form-actions right1">
+						<a asp-action="ProductIndex" class="btn btn-primary">ÜRÜN LİSTESİ</a>
+						<input type="submit" name="name" value="KAYDET" class="btn btn-success" />
+					</div>
+
+				</form>
+			</div>
+		</div>
+		<!-- END SAMPLE FORM PORTLET-->
+
+	</div>
+
+</div>
+
+
+

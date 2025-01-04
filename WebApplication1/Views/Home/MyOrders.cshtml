@@ -1,0 +1,85 @@
+﻿@model List<Vw_MyOrder>
+@{
+	ViewData["Title"] = "MyOrders";
+	Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<main class="main-wrapper">
+
+	<!-- Start Cart Area  -->
+	<div class="axil-product-cart-area axil-section-gap">
+		<div class="container">
+			<div class="axil-product-cart-wrap">
+
+				<h4 class="heading-shadow" style="padding-right:1130px;  ">SİPARİŞLERİM</h4>
+				<div style="border-bottom: 1px solid #000; margin-top: 10px; margin-bottom: 20px; width: 100%;"></div>
+				
+
+				<div class="table-responsive">
+					<table class="table axil-product-table axil-cart-table mb--40" style="direction: ltr;">
+						<thead>
+							<tr>
+
+								<th scope="col" class="product-thumbnail heading-shadow">SİPARİŞ NO</th>
+								<th scope="col" class="product-price heading-shadow">ÜRÜN ADI</th>
+								<th scope="col" class="product-title"></th>
+								<th scope="col" class="product-price heading-shadow">TARİH</th>
+								<th scope="col" class="product-quantity heading-shadow">ADET</th>
+								<th scope="col" class="product-subtotal heading-shadow">FİYAT</th>
+							</tr>
+						</thead>
+
+
+						<tbody >
+
+
+							@foreach (var item in Model)
+							{
+								<tr>
+
+
+									<td class="product-title">
+										<a href="">@item.OrderGroupGUID</a>
+									</td>
+
+									<td class="product-thumbnail">
+										<a href="/Home/Details/@item.ProductID"><img width="114" height="130" alt="04"  src="~/resimler/@item.PhotoPath"></a>
+									</td>
+
+
+									<td class="product-quantity" >
+										<a href="/Home/Details/@item.ProductID">@item.ProductName</a>
+									</td>
+
+									<td class="product-quantity">
+										<a href="">@item.OrderDate</a>
+									</td>
+
+									<td class="product-quantity">
+										<a href="">@item.Quantity</a>
+									</td>
+
+									<td class="product-quantity">
+										<a href="">@item.UnitPrice</a>
+									</td>
+
+									
+								</tr>
+							}
+
+
+						</tbody>
+					</table>
+				</div>
+
+
+
+
+			</div>
+
+		</div>
+	</div>
+	<!-- End Cart Area  -->
+
+</main>
+

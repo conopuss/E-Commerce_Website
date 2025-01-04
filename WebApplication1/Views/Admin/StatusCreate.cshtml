@@ -1,0 +1,68 @@
+﻿@model Status
+@{
+	ViewData["Title"] = "StatusCreate";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+
+	<div class="col-md-2"></div>
+
+	<div class="col-md-8 ">
+
+		<!-- BEGIN SAMPLE FORM PORTLET-->
+		<div class="portlet box purple ">
+			<div class="portlet-title">
+				<div class="caption">
+					STATÜ GİRİŞ FORMU
+				</div>
+
+			</div>
+			<div class="portlet-body form">
+				<form class="form-horizontal" role="form" action="/Admin/StatusCreate" method="post">
+					<div class="form-body">
+
+
+
+						<div class="form-group">
+							@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+							<label class="col-md-3 control-label" asp-for="StatusName">Statü Adı</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control input-lg" placeholder="Statü Giriniz" asp-for="StatusName">
+							</div>
+						</div>
+
+
+
+						<div class="form-group">
+							<label class="col-md-3 control-label">Aktif mi</label>
+							<div class="col-md-9">
+								<input asp-for="Active" class="form-control input-lg" />
+								<span asp-validation-for="Active" class="text-danger"></span>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="form-actions right1">
+						<a asp-action="StatusIndex" class="btn btn-primary">STATÜ LİSTESİ</a>
+						<input type="submit" name="name" value="KAYDET" class="btn btn-success" />
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- END SAMPLE FORM PORTLET-->
+	</div>
+</div>
+
+
+
+

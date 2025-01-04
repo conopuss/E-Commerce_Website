@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Supplier>
+
+
+<div class="axil-testimoial-area axil-section-gap bg-vista-white">
+	<div class="container">
+		<div class="section-title-wrapper">
+					
+			<h2 class="title heading-shadow">MARKALAR</h2>
+		</div>
+		<!-- End .section-title -->
+		<div class="testimonial-slick-activation testimonial-style-one-wrapper slick-layout-wrapper--20 axil-slick-arrow arrow-top-slide">
+			
+			@foreach (var item in Model)
+			{
+				<!-- End .slick-single-layout -->
+				<div class="slick-single-layout testimonial-style-one">
+					
+					<div class="media">
+						<div class="thumbnail">
+							<a href="/Home/SupplierPage/@item.SupplierID"><img src="~/resimler/@item.PhotoPath" alt="" style="height:250px;width:370px;" /></a>
+						</div>
+						
+					</div>
+					<!-- End .thumbnail -->
+				</div>
+				<!-- End .slick-single-layout -->
+			}
+
+		
+		
+			<!-- End .slick-single-layout -->
+
+		</div>
+	</div>
+</div>

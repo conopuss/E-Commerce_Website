@@ -1,0 +1,134 @@
+﻿<!-- Start Footer Area  -->
+<footer class="axil-footer-area footer-style-2">
+	<!-- Start Footer Top Area  -->
+	<div class="footer-top separator-top">
+		<div class="container">
+			<div class="row">
+				
+				<!-- Start Single Widget  -->
+				<div class="col-lg-4 col-sm-6">
+					<div class="axil-footer-widget">
+						<h5 class="widget-title" style="margin-right:20px">HESABIM</h5>
+						<div class="inner">
+							<ul>
+								<li><a href="/Home/Login">GİRİŞ</a></li>
+								<li><a href="/Home/Register">ÜYE OL</a></li>
+								<li><a href="/Home/AboutUs">Hakkımızda</a></li>
+								<li><a href="/Home/ContactUs">İLETİŞİM</a></li>
+								<li><a href="/Home/MyOrders">Siparişlerim</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- End Single Widget  -->
+				<!-- Start Single Widget  -->
+				<div class="col-lg-8 col-sm-6">
+					<div class="axil-footer-widget">
+
+
+						@await Component.InvokeAsync("Address")
+
+					</div>
+				</div>
+				<!-- End Single Widget  -->
+				
+			
+			</div>
+		</div>
+	</div>
+	<!-- End Footer Top Area  -->
+	<!-- Start Copyright Area  -->
+	<div class="copyright-area copyright-default separator-top">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-xl-4">
+					<div class="social-share">
+						<a href="#"><i class="fab fa-facebook-f"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+						<a href="#"><i class="fab fa-linkedin-in"></i></a>
+						<a href="#"><i class="fab fa-discord"></i></a>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-12">
+					<div class="copyright-left d-flex flex-wrap justify-content-center">
+						<div style="text-align: center; font-size: 0.9em; color: gray;">
+							Örnek e-Ticaret projesidir, herhangi bir ticari kullanım amacı yoktur
+						</div>
+
+
+
+
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-12">
+					<div class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
+						<span class="card-text">Accept For</span>
+						<ul class="payment-icons-bottom quick-link">
+							<li><img src="/assets/images/icons/cart/cart-1.png" alt="paypal cart"></li>
+							<li><img src="/assets/images/icons/cart/cart-2.png" alt="paypal cart"></li>
+							<li><img src="/assets/images/icons/cart/cart-5.png" alt="paypal cart"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Copyright Area  -->
+</footer>
+<!-- End Footer Area  -->
+<!-- Header Search Modal End -->
+<div class="header-search-modal" id="header-search-modal">
+	<button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
+	<div class="header-search-wrap">
+		<div class="card-header">
+			<form action="/home/gettingSearch">
+				<div class="input-group">
+					<input type="search" class="form-control" style="direction: ltr;" lang="tr" name="prod-search" id="prod-search" placeholder="ARA">
+					<ul id="sul"></ul>
+				</div>
+			</form>
+		</div>
+		<div class="card-body">
+		
+			<div class="psearch-results">
+				<ul id="dv"></ul>
+
+				<ul id="sul"></ul>
+			</div>
+		</div>
+
+	</div>
+</div>
+	
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+	//arama alanı
+	$("#prod-search").keyup(function () {
+		var id = $("#prod-search").val();
+
+		if (id != "" && id.length > 1) {
+			$.ajax({
+				url: '/Home/gettingSearch/' + id,
+				type: 'POST',
+				ContentType: "application/json;charset=UTF-8",
+				success: function (result) {
+					$("#sul").remove();
+					$("#dv").append("<ul id='sul'>")
+					$("#sul").append(result)
+					$("#dv").append("</ul>")
+				}
+			})
+		}
+		else {
+			$("#sul").remove();  //eski buldugu kayıtları temizlesin.backspace ile geri geldi
+		}
+
+	})
+
+
+
+</script>

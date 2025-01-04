@@ -1,0 +1,41 @@
+﻿<!-- Start Shop Area  -->
+<div class="row row--15" id="products">
+    @if (ViewBag.Products != null && ((IList<Cls_Product>)ViewBag.Products).Count > 0)
+    {
+        @foreach (var item in ViewBag.Products as IList<Cls_Product>)
+        {
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <div class="axil-product product-style-one has-color-pick mt--40">
+                    <div class="thumbnail">
+                        <a href="/Home/Details/@item.ProductID">
+                            <img src="~/resimler/@item.PhotoPath" alt="Product Images">
+                        </a>
+                        <div class="product-hover-action">
+                            <ul class="cart-action">
+                                <li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+                                <li class="quickview"><a href="/Home/Details/@item.ProductID"><i class="far fa-eye"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="inner">
+                            <h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+                            <div class="product-price-variant">
+                                <span class="price current-price">@item.UnitPrice</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <!-- Display no products message when there are no results -->
+        <div class="col-12">
+            <div class="alert alert-warning text-center mt-4">
+                Bu kriterlerde ürün bulunamadı
+            </div>
+        </div>
+    }
+</div>

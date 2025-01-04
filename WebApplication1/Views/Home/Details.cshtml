@@ -1,0 +1,181 @@
+﻿@model MainPageModel
+
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+
+<main class="main-wrapper">
+	<!-- Start Shop Area  -->
+	<br />
+
+	<div class="axil-single-product-area bg-color-white">
+		<div class="single-product-thumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 ">
+						<div class="row">
+							<div class="col-lg-7 order-lg-2">
+								<div class="single-product-thumbnail-wrap zoom-gallery">
+									<div class="product-large-thumbnail single-product-thumbnail axil-product">
+										<div class="thumbnail">
+											<a href="assets/images/product/product-big-04.png" class="popup-zoom">
+												<img src="/resimler/@Model.ProductDetails.PhotoPath" alt="Product Images">
+											</a>
+										</div>
+										<div class="thumbnail">
+											<a href="assets/images/product/product-big-05.png" class="popup-zoom">
+												<img src="/resimler/@Model.ProductDetails.PhotoPath" class="popup-zoom" alt="Product Images">
+											</a>
+										</div>
+										<div class="thumbnail">
+											<a href="assets/images/product/product-big-06.png" class="popup-zoom">
+												<img src="/resimler/@Model.ProductDetails.PhotoPath" class="popup-zoom" alt="Product Images">
+											</a>
+										</div>
+										<div class="thumbnail">
+											<a href="assets/images/product/product-big-08.png" class="popup-zoom">
+												<img src="/resimler/@Model.ProductDetails.PhotoPath" class="popup-zoom" alt="Product Images">
+											</a>
+										</div>
+										<div class="thumbnail">
+											<a href="assets/images/product/product-big-07.png" class="popup-zoom">
+												<img src="/resimler/@Model.ProductDetails.PhotoPath" class="popup-zoom" alt="Product Images">
+											</a>
+										</div>
+									</div>
+
+									<div class="product-quick-view position-view">
+										<a href="assets/images/product/product-big-04.png" class="popup-zoom">
+											<i class="far fa-search-plus"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-2 order-lg-1">
+								<div class="product-small-thumb small-thumb-wrapper small-thumb-style-two">
+									<div class="small-thumb-img ">
+										<img src="/resimler/@Model.ProductDetails.PhotoPath" alt="thumb image">
+									</div>
+									<div class="small-thumb-img">
+										<img src="/resimler/@Model.ProductDetails.PhotoPath" alt="thumb image">
+									</div>
+									<div class="small-thumb-img active">
+										<img src="/resimler/@Model.ProductDetails.PhotoPath" alt="thumb image">
+									</div>
+									<div class="small-thumb-img">
+										<img src="/resimler/@Model.ProductDetails.PhotoPath" alt="thumb image">
+									</div>
+									<div class="small-thumb-img">
+										<img src="/resimler/@Model.ProductDetails.PhotoPath" alt="thumb image">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 mb--40">
+						<br />
+						<br />
+						<br />
+						<div class="single-product-content">
+							<div class="inner">
+								<h2 class="product-title" style="direction: ltr; max-width: 305px;">@Model.ProductDetails.ProductName</h2>
+								<span class="price-amount" style="direction: ltr; padding-left:327px;"> TL @Model.ProductDetails.UnitPrice </span>
+
+								<div class="product-notes" style="direction: ltr; max-width: 300px;">
+									<!-- Adjust max-width as needed -->
+									<p class="description">@Model.ProductDetails.Notes</p>
+								</div>
+
+
+
+								<!-- Start Product Action Wrapper  -->
+								<div class="product-action-wrapper d-flex-center">
+
+									<!-- Start Product Action  -->
+									<ul class="product-action d-flex-center ">
+										<li class="add-to-cart"><a href="/Home/CartProcess/@Model.ProductDetails.ProductID" class="axil-btn btn-bg-primary shorter-button">Sepete Ekle</a></li>
+
+									</ul>
+									<!-- End Product Action  -->
+
+								</div>
+								<!-- End Product Action Wrapper  -->
+								<!-- End .product-desc-wrapper -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End .single-product-thumb -->
+
+	</div>
+
+	<!-- End Shop Area  -->
+	<!-- Start Highlighted Product Area  -->
+	<div class="axil-new-arrivals-product-area bg-color-white">
+		<div class="container">
+			<div class="section-title-wrapper">
+
+				<h3 class="title heading-shadow" ">BENZER ÜRÜNLER</h3>
+			</div>
+			<div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide  bg-vista-white">
+
+				@foreach (var item in Model.RelatedProducts)
+				{
+					<div class="slick-single-layout">
+						<div class="axil-product product-style-three">
+							<div class="thumbnail">
+								<a href="/Home/Details/@item.ProductID">
+									<img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="/resimler/@item.PhotoPath" alt="Product Images">
+								</a>
+								<div class="product-hover-action">
+									<ul class="cart-action">
+
+										<li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+										<li class="quickview"><a href="/Home/Details/@item.ProductID"><i class="far fa-eye"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="product-content">
+								<div class="inner">
+
+									<h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+									<div class="product-price-variant">
+										<span>@item.UnitPrice</span>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+			</div>
+		</div>
+	</div>
+
+</main>
+
+<head>
+	<style>
+
+
+		.shorter-button {
+			max-width: 300px; /* Adjust width as needed */
+		
+		}
+
+	</style>
+
+
+</head>
+
+
+
+
+
+
+

@@ -1,0 +1,213 @@
+﻿@model IEnumerable<Search>
+
+@{
+	int ikat = 0;
+	int imar = 0;
+	int iurun = 0;
+}
+
+
+<div class="search-result-header">
+	<h6 class="title"></h6>
+
+</div>
+<div class="psearch-results">
+
+	@foreach (var item in Model)
+	{
+		if (item.KATEGORI != 0)
+		{
+			if (ikat == 0)
+			{
+				<div class="category-header">KATEGORİLER</div>
+				ikat++;
+			}
+			<div class="result-item">
+				<a href="/Home/CategoryPage/@item.KATEGORI" class="result-link">
+					<span class="result-text">@item.ARAMAISMI</span>
+				</a>
+			</div>
+
+
+		}
+
+		if (item.MARKA != 0)
+		{
+			if (imar == 0)
+			{
+				<div class="category-header">MARKALAR</div>
+				imar++;
+			}
+			<div class="result-item">
+				<a href="/Home/SupplierPage/@item.MARKA" class="result-link">
+					<img src="~/resimler/@item.PhotoPath" alt="Brand Image" class="small-thumbnail" />
+					<span class="result-text" style="margin-right:30px">@item.ARAMAISMI</span>
+				</a>
+			</div>
+		}
+
+		if (item.URUN != 0)
+		{
+			if (iurun == 0)
+			{
+				<div class="category-header">ÜRÜNLER</div>
+				iurun++;
+			}
+			<div class="result-item">
+				<a href="/Home/Details/@item.URUN" class="result-link">
+					<img src="~/resimler/@item.PhotoPath" alt="Product Image" class="small-thumbnail" />
+					<span class="result-text" style="margin-right:30px">@item.ARAMAISMI</span>
+					
+				</a>
+			</div>
+		}
+	}
+</div>
+
+<style>
+	/* Main container styling */
+	.header-search-wrap {
+		background-color: #f8f9fa;
+		padding: 20px;
+		border-radius: 8px;
+		width: 100%;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	/* Result header styling */
+	.search-result-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 15px;
+		border-bottom: 1px solid #ddd;
+		padding-bottom: 5px;
+	}
+
+	/* Category headers */
+	.category-header {
+		font-size: 1.2em;
+		font-weight: bold;
+		margin-top: 15px;
+		margin-bottom: 10px;
+		color: #333;
+		border-bottom: 1px solid #e0e0e0;
+		padding-bottom: 5px;
+	}
+
+	/* Result items */
+	.result-item {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		background-color: #fff;
+		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+	}
+
+	/* Result link styling */
+	.result-link {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		color: #333;
+	}
+
+	/* Image styling */
+	.small-thumbnail {
+		width: 100px;
+		height: 100px;
+		border-radius: 4px;
+		object-fit: cover;
+		border: 1px solid #ddd;
+	}
+
+	/* Text styling */
+	.result-text {
+		font-size: 1em;
+		font-weight: 500;
+		margin-left: 10px; /* Additional space on the left of the text */
+	}
+</style>
+
+
+
+@* <div class="header-search-modal" id="header-search-modal">
+	<button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
+	<div class="header-search-wrap">
+		<div class="card-header">
+			<form action="#">
+				<div class="input-group">
+					<input type="search" class="form-control" name="prod-search" id="prod-search" placeholder="Write Something....">
+					<button type="submit" class="axil-btn btn-bg-primary"><i class="far fa-search"></i></button>
+				</div>
+			</form>
+		</div>
+		<div class="card-body">
+			<div class="search-result-header">
+				<h6 class="title">24 Result Found</h6>
+				<a href="shop.html" class="view-all">View All</a>
+			</div>
+			<div class="psearch-results">
+				<div class="axil-product-list">
+					<div class="thumbnail">
+						<a href="single-product.html">
+							<img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
+						</a>
+					</div>
+					<div class="product-content">
+						<div class="product-rating">
+							<span class="rating-icon">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fal fa-star"></i>
+							</span>
+							<span class="rating-number"><span>100+</span> Reviews</span>
+						</div>
+						<h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
+						<div class="product-price-variant">
+							<span class="price current-price">$29.99</span>
+							<span class="price old-price">$49.99</span>
+						</div>
+						<div class="product-cart">
+							<a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
+							<a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="axil-product-list">
+					<div class="thumbnail">
+						<a href="single-product.html">
+							<img src="./assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
+						</a>
+					</div>
+					<div class="product-content">
+						<div class="product-rating">
+							<span class="rating-icon">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fal fa-star"></i>
+							</span>
+							<span class="rating-number"><span>100+</span> Reviews</span>
+						</div>
+						<h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
+						<div class="product-price-variant">
+							<span class="price current-price">$29.99</span>
+							<span class="price old-price">$49.99</span>
+						</div>
+						<div class="product-cart">
+							<a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
+							<a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> *@

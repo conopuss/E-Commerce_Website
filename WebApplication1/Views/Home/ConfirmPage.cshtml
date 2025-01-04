@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "ConfirmPage";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="order-section">
+                <br />
+                <h3 class="heading-shadow" style="direction: ltr;">Sipariş Numaranız</h3>
+                <div class="order-details" style="border: 1px solid black; padding: 15px; direction: ltr;">
+                    <table class="table-responsive">
+                        <tbody>
+                            <tr>
+                                <td>@ViewBag.OrderGroupGUID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .heading-shadow {
+        text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.3);
+        font-size: 1.5em;
+        color: #333;
+    }
+
+    .order-details {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+</style>

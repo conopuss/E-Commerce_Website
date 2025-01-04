@@ -1,0 +1,77 @@
+﻿@model Supplier
+
+@{
+	ViewData["Title"] = "SupplierCreate";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+
+	<div class="col-md-2"></div>
+
+	<div class="col-md-8 ">
+
+		<!-- BEGIN SAMPLE FORM PORTLET-->
+		<div class="portlet box purple ">
+			<div class="portlet-title">
+				<div class="caption">
+					MARKA GİRİŞ FORMU
+				</div>
+
+			</div>
+			<div class="portlet-body form">
+				<form class="form-horizontal" role="form" action="/Admin/SupplierCreate" method="post">
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="col-md-3 control-label" asp-for="BrandName"></label>
+							<div class="col-md-9">
+
+								<input type="text" class="form-control input-lg" placeholder="Marka Giriniz" asp-for="BrandName" />
+
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-md-3 control-label" asp-for="PhotoPath"></label>
+							<div class="col-md-9">
+
+								<input type="file" class="form-control input-lg" placeholder="Marka Giriniz" asp-for="PhotoPath" />
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label">Aktif mi</label>
+							<div class="col-md-9">
+								<input asp-for="Active" class="form-control input-lg" />
+								<span asp-validation-for="Active" class="text-danger"></span>
+
+							</div>
+						</div>
+
+					</div>
+
+
+
+
+					<div class="form-actions right1">
+						<a asp-action="SupplierIndex" class="btn btn-primary">MARKA LİSTESİ</a>
+						<input type="submit" name="name" value="KAYDET" class="btn btn-success" />
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- END SAMPLE FORM PORTLET-->
+
+
+	</div>
+
+</div>
+
+@* <partial name="_Notifications" /> *@
+
+
+
+

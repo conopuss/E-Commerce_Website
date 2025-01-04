@@ -1,0 +1,47 @@
+﻿@if (TempData["success"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <style>
+        /* Customize Toastr notification font size and box size */
+        .toast-message {
+            font-size: 3.0em; /* Adjust size as needed */
+        }
+
+        .toast {
+            min-height: 100px; /* Increase as needed */
+            padding: 20px; /* Adjust padding to give more space */
+            min-width: 450px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        toastr.success('@TempData["success"]');
+    </script>
+}
+
+@if (TempData["error"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <style>
+        /* Customize Toastr notification font size and box size */
+        .toast-message {
+            font-size: 3.0em; /* Adjust size as needed */
+        }
+
+        .toast {
+            min-height: 100px; /* Increase as needed */
+            padding: 20px; /* Adjust padding to give more space */
+            min-width: 450px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        toastr.error('@TempData["error"]');
+    </script>
+}

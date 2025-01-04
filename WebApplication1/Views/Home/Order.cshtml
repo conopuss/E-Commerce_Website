@@ -1,0 +1,254 @@
+﻿@model User
+
+@{
+	ViewData["Title"] = "Order";
+	Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery UI CSS -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- jQuery UI JavaScript -->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+
+<!-- Order Page Content Start -->
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-lg-6">
+			<div class="order-section">
+				<form action="@Url.Action("Order", "Home")" method="post">
+					<br />
+					<h3 class="heading-shadow" style="direction: ltr;">İletişim Bilgileriniz</h3>
+					<div class="order-details" style="border: 1px solid black; padding: 15px; direction: ltr;">
+						<table class="table-responsive">
+							<tbody>
+								<tr>
+									<th>Ad Soyad</th>
+									<td>@Model.NameSurname</td>
+								</tr>
+								<tr>
+									<th>EMail</th>
+									<td>@Model.Email</td>
+								</tr>
+								<tr>
+									<th>Telefon</th>
+									<td>@Model.Telephone</td>
+								</tr>
+								<tr>
+									<th>Fatura Adresi</th>
+									<td>@Model.InvoiceAddress</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="form-group d-flex align-items-center justify-content-start gap-3 mt-3">
+							<a href="/Home/UserEdit/@Model.UserID" class="btn btn-primary btn-lg flex-fill">Güncelle</a>
+						</div>
+					</div>
+
+					<br />
+					<h3 class="heading-shadow" style="direction: ltr;">Kredi Kartı Bilgilerinizi Giriniz</h3>
+					<div class="order-details" style="border: 1px solid black; padding: 15px; direction: ltr;">
+						<table class="table-responsive">
+							<tbody>
+								<tr>
+									<th>Kart No</th>
+									<td>
+										<span>
+											<input type="text" name="kredikartno" class="inputbox input-shadow" maxlength="16" required onkeypress="return numberonly(this, event)">
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<th>Ay</th>
+									<td>
+										<span>
+											<input type="text" name="kredikartay" class="inputbox input-shadow" maxlength="2" required onkeypress="return numberonly(this, event)">
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<th>Yıl</th>
+									<td>
+										<span>
+											<input type="text" name="kredikartyil" class="inputbox input-shadow" maxlength="2" required onkeypress="return numberonly(this, event)">
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<th>CVS</th>
+									<td>
+										<span class="amount">
+											<input type="text" name="kredikartcvs" class="inputbox input-shadow" maxlength="3" required onkeypress="return numberonly(this, event)">
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<br />
+					<h2 class="heading-shadow" style="direction: ltr;">FATURA BİLGİLERİNİZİ GİRİNİZ</h2>
+					<div class="total_table " style="border: 1px solid black; padding: 15px; direction: ltr;">
+						<table class="table table-responsive">
+							<tbody>
+								<tr>
+									<th>Fatura Tipi</th>
+									<td>
+										<input type="radio" name="invoicetype" value="rbindividual" id="individual">
+										<label for="individual">Bireysel</label>
+
+										<input type="radio" name="invoicetype" value="rbcorporate" id="corporate">
+										<label for="corporate">Kurumsal</label>
+									</td>
+								</tr>
+
+								<!-- Individual-specific row -->
+								<tr class="cart-subtotal" id="tr_tckimlik" style="display:none;">
+									<th>TC KİMLİK NO</th>
+									<td>
+										<span>
+											<input type="text" name="txt_individual" class="inputbox input-shadow" maxlength="11" required onkeypress="return numberonly(this, event)">
+										</span>
+									</td>
+								</tr>
+
+								<!-- Corporate-specific row -->
+								<tr class="cart-subtotal" id="tr_vergino" style="display:none;">
+									<th>VERGİ NO</th>
+									<td>
+										<span class="amount">
+											<input type="text" name="txt_corporate" class="inputbox input-shadow" maxlength="10" onkeypress="return numberonly(this, event)" style="background-color: #FDF7C3;">
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br />
+					<div class="order-details" style="border: 1px solid black; padding: 20px; direction: ltr;">
+						<table class="table table-responsive" style="width: 100%;">
+							<tbody>
+								<!-- Information Section -->
+								<tr>
+									<td>
+										<span class="amount">
+										
+												Satılan ürün iadesi 2 gün içinde yapılabilir.<br>
+												Kırılan ürünlerden şirketimiz sorumlu değildir.<br>
+												Kvk sözleşme şartlarını okudum.
+										
+										</span>
+									</td>
+								</tr>
+
+								<!-- Checkbox and Label Section -->
+								<tr>
+									<td>
+										<div style="margin-top: 15px; display: flex; align-items: center;">
+											@Html.CheckBox("chk_accept", false, new { id = "chk_accept" })
+											<label for="chk_accept" style="margin-left: 8px;">
+												<strong>
+
+													Yukarıdaki bilgilendirmeleri okudum, kabul ediyorum.
+												</strong>
+												
+											</label>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<!-- Confirmation Button (Hidden initially) -->
+						<div id="div_siparisionayla" style="display: none;">
+							<button type="submit" class="btn btn-primary btn-lg flex-fill">Siparişi Onayla</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<head>
+	<style>
+
+
+		.heading-shadow {
+			text-shadow: 5px 5px 7px rgba(0, 0, 0, 0.3);
+			font-size: 1.5em;
+			color: #333;
+		}
+
+		.order-details {
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			padding: 20px;
+			background-color: #f9f9f9;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.input-shadow {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			padding: 10px;
+			width: 100%;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			transition: border-color 0.3s, box-shadow 0.3s;
+		}
+
+			.input-shadow:focus {
+				border-color: #007bff;
+				box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+				outline: none;
+			}
+	</style>
+</head>
+
+<script>
+	$(document).ready(function () {
+		// Function to update display based on selected radio button
+		function updateInvoiceType() {
+			const selectedValue = $('input[name="invoicetype"]:checked').val();
+
+			// Show/hide specific rows based on selected value
+			if (selectedValue === 'rbindividual') {
+				$('#tr_tckimlik').show(); // Show individual-specific row
+				$('#tr_vergino').hide(); // Hide corporate-specific row
+			} else if (selectedValue === 'rbcorporate') {
+				$('#tr_tckimlik').hide(); // Hide individual-specific row
+				$('#tr_vergino').show(); // Show corporate-specific row
+			}
+		}
+
+		// Set up change event and initial load for radio buttons
+		$('input[type=radio][name=invoicetype]').on('change', function () {
+			updateInvoiceType();
+		});
+
+		// Initialize the radio button visibility
+		updateInvoiceType();
+
+		// Show or hide the confirmation button based on checkbox state
+		$('input[type=checkbox][name=chk_accept]').on('change', function () {
+
+			// alert("fffffff")
+
+			if ($(this).prop('checked')) {
+
+				$("#div_siparisionayla").css("display", "block")
+
+			}
+
+			else {
+
+				$("#div_siparisionayla").css("display", "none")
+
+			}
+
+		})
+	});
+</script>

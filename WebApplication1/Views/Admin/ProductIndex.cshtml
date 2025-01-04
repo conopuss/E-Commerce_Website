@@ -1,0 +1,186 @@
+﻿@model IEnumerable<Product>
+
+@{
+	ViewData["Title"] = "ProductIndex";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+	Baglanti context = new Baglanti();
+	string CategoryName = "";
+	string BrandName = "";
+	string StatusName = "";
+}
+
+<p>
+
+	<a asp-action="ProductCreate" asp-controller="Admin" class="btn btn-success">
+		YENİ ÜRÜN
+	</a>
+</p>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					ÜRÜN LİSTESİ
+				</div>
+
+			</div>
+
+
+			<div class="portlet-body">
+				<div class="table-scrollable">
+					<table class="table table-hover">
+						<thead style="background-color:grey; color:white">
+							<tr>
+								<th>
+									@Html.DisplayNameFor(model => model.ProductID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.ProductName)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.UnitPrice)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.CategoryID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.SupplierID)
+
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.StatusID)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Stock)
+								</th>
+
+								<th>
+									@Html.DisplayNameFor(model => model.HighLighted)
+								</th>
+								<th>
+									@Html.DisplayNameFor(model => model.Active)
+								</th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(model => item.ProductID)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.ProductName)
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.UnitPrice)
+									</td>
+									<td>
+										@{
+											CategoryName = context.Categories.FirstOrDefault(c => c.CategoryID == item.CategoryID).CategoryName;
+											@CategoryName
+										}
+									</td>
+
+
+									<td>
+										@{
+											BrandName = context.Suppliers.FirstOrDefault(c => c.SupplierID == item.SupplierID).BrandName;
+											@BrandName
+										}
+									</td>
+
+
+
+									<td>
+										@{
+											StatusName = context.Statuses.FirstOrDefault(c => c.StatusID == item.StatusID).StatusName;
+
+											if (item.StatusID == 1)
+											{
+												<span style="background-color:red;color:white;"> @StatusName</span>
+											}
+											else if (item.StatusID == 2)
+											{
+												<span style="background-color: #AA77FF; color: white;"> @StatusName</span>
+											}
+											else if (item.StatusID == 3)
+											{
+												<span style="background-color: #62CDFF; color: white;"> @StatusName</span>
+											}
+											else if (item.StatusID == 4)
+											{
+												<span style="background-color: #2E4F4F; color: white;"> @StatusName</span>
+											}
+											else if (item.StatusID == 5)
+											{
+												<span style="background-color: #898121; color: white;"> @StatusName</span>
+											}
+											else if (item.StatusID == 6)
+											{
+												<span style="background-color: #A86464; color: white;"> @StatusName</span>
+											}
+											else
+											{
+												<span style="background-color: #AA77FF; color: white;"> @StatusName</span>
+											}
+
+										}
+									</td>
+									<td>
+										@Html.DisplayFor(model => item.Stock)
+									</td>
+
+									<td>
+										@Html.DisplayFor(model => item.HighLighted)
+									</td>
+
+
+
+									@if (item.Active)
+									{
+										<td>
+											<div style="background-color:green;color:white;display:inline-block;padding:6px;">
+												<label style="font-weight: bold">Aktif</label>
+											</div>
+										</td>
+									}
+									else
+									{
+										<td>
+											<div style="background-color:red;color:white;display:inline-block;padding:6px;">
+												<label style="font-weight: bold">Pasif</label>
+											</div>
+										</td>
+									}
+									<td>
+
+									<td>
+										<a asp-action="ProductEdit" asp-route-id="@item.ProductID" class="label label-info">Düzelt</a>
+										<a asp-action="ProductDetails" asp-route-id="@item.ProductID" class="label label-warning">Detay</a>
+										<a asp-action="ProductDelete" asp-route-id="@item.ProductID" class="label label-danger">SİL</a>
+									</td>
+
+
+
+								</tr>
+							}
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- END SAMPLE TABLE PORTLET-->
+	</div>
+</div>
+
+

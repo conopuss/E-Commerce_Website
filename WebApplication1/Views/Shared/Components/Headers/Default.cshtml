@@ -1,0 +1,201 @@
+﻿@model IEnumerable<Category>
+@inject IHttpContextAccessor Accesor
+
+<header class="header axil-header header-style-4">
+
+	<!-- Start Header Top Area  -->
+	<div class="axil-header-top">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-4 col-12">
+					<div style="text-align: center; font-size: 0.9em; color: gray;">
+						Örnek e-Ticaret projesidir, herhangi bir ticari kullanım amacı yoktur
+					</div>
+				</div>
+
+				@{
+					var emailInfo = Accesor.HttpContext.Session.GetString("NameSurname");
+				}
+
+				<div class="col-md-4 col-5">
+					<div class="header-brand">
+						<a href="/Home" class="logo logo-dark">
+							<img src="/assets/images/logo/logo.png" alt="Site Logo">
+						
+							<br />
+							<div style="display: flex; align-items: center; justify-content: center; padding: 10px;">
+								@if (!string.IsNullOrEmpty(emailInfo))
+								{
+								<span style="
+        background-color: #00509E; /* Soft blue background */
+        color: #FFFFFF;            /* White text color */
+        padding: 8px 15px;         /* Padding for a button-like appearance */
+        border-radius: 20px;       /* Rounded corners */
+        font-weight: 500;          /* Semi-bold font */
+        font-size: 1rem;           /* Adjusted font size */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+		">
+									@emailInfo
+								</span>
+								}
+							</div>
+
+						</a>
+						<a href="/Home" class="logo logo-light">
+							<img src="assets/images/logo/logo-light.png" alt="Site Logo">
+						</a>
+					</div>
+
+
+				</div>
+				<div class="col-md-4 col-7">
+					<div class="header-action">
+						<ul class="action-list">
+
+
+							<li class="axil-search">
+								<a href="javascript:void(0)" class="header-search-icon" title="Search">
+									<i class="flaticon-magnifying-glass"></i>
+								</a>
+
+							</li>
+
+						
+
+
+							<li class="my-account">
+								<a href="javascript:void(0)">
+									<i class="flaticon-person"></i>
+								</a>
+								<div class="my-account-dropdown">
+
+									<ul>
+
+										<li>
+											<a href="/Home/Login">GİRİŞ</a>
+										</li>
+										<li>
+											<a href="/Home/Logout">ÇIKIŞ</a>
+										</li>
+										<li>
+											<a href="/Home/Register">ÜYE OL</a>
+										</li>
+										<li>
+											<a href="/Home/AboutUs">Hakkımızda</a>
+										</li>
+										<li>
+											<a href="/Home/ContactUs">İLETİŞİM</a>
+										</li>
+										<li>
+											<a href="/Admin/Index">Admin Paneli</a>
+										</li>
+									</ul>
+
+								</div>
+
+							</li>
+
+							<li class="axil-mobile-toggle">
+								<button class="menu-btn mobile-nav-toggler">
+									<i class="flaticon-menu-2"></i>
+								</button>
+							</li>
+
+						
+
+
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Header Top Area  -->
+	<!-- Start Mainmenu Area  -->
+	<div id="axil-sticky-placeholder"></div>
+	<div class="axil-mainmenu">
+		<div class="container">
+			<div class="header-navbar">
+				<div class="header-main-nav">
+					<!-- Start Mainmanu Nav -->
+					<nav class="mainmenu-nav">
+						<button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
+						<div class="mobile-nav-brand">
+							<a href="index.html" class="logo">
+								<img src="assets/images/logo/logo.png" alt="Site Logo">
+							</a>
+						</div>
+						<ul class="mainmenu">
+							<li class="menu-item-has-children">
+								<a href="#">KATEGORİLER</a>
+								<ul class="axil-submenu">
+									@foreach (var item in Model.Where(p => p.ParentID == 0))
+									{
+										<li>
+											<a title="@item.CategoryName"  class="baby" style="font-weight:bold; ">
+												<span class="catTitle">@item.CategoryName</span>
+											</a>
+
+											<ul class="sub-menu">
+												<!-- Use a specific class for sub-menu -->
+												@foreach (var subitem in Model.Where(p => p.ParentID == item.CategoryID))
+												{
+													<li>
+														<!-- Add <li> tags for each sub-category -->
+														<a title="@subitem.CategoryName" href="/Home/CategoryPage/@subitem.CategoryID" style="color :darkblue;">
+															<span class="catTitle">@subitem.CategoryName</span>
+														</a>
+													</li>
+												}
+											</ul>
+										</li>
+									}
+								</ul>
+							</li>
+
+
+
+
+							<li class="menu-item-has-children">
+								<a href="#">ÜRÜNLER</a>
+								<ul class="axil-submenu">
+
+									<li><a href="/Home/NewProducts">YENİ ÜRÜNLER</a></li>
+									<li><a href="/Home/SpecialProducts">ÖZEL ÜRÜNLER</a></li>
+									<li><a href="/Home/DiscountedProducts">İNDİRİMLİ ÜRÜNLER</a></li>
+									<li><a href="/Home/HighlightedProducts">ÖNE ÇIKANLAR</a></li>
+									<li><a href="/Home/TopsellerProducts">ÇOK SATANLAR</a></li>
+									<li><a href="/Home/NotableProducts">DİKKAT ÇEKEN ÜRÜNLER</a></li>
+									<li><a href="/Home/OpportunityProducts">fIRSAT ÜRÜNLERİ</a></li>
+
+								</ul>
+							</li>
+							<li class="menu-item-has-children">
+								<a href="#">Faydalı Bilgiler</a>
+								<ul class="axil-submenu">
+
+									<li><a href="/WebAPI/PharmacyOnDuty">Nöbetçi Eczaneler</a></li>
+									<li><a href="/WebAPI/ArtAndCulture">Kültür Sanat</a></li>
+									
+
+								</ul>
+							</li>
+							<li><a href="/Home/DetailedSearch">Detaylı Arama</a></li>
+
+							<li><a href="/Home/MyOrders">Siparişlerim</a></li>
+							<li><a href="/Home/Cart">SEPETİM</a></li>
+						</ul>
+					</nav>
+					<!-- End Mainmanu Nav -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Mainmenu Area  -->
+
+
+
+
+
+</header>

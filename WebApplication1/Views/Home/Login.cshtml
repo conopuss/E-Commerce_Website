@@ -1,0 +1,63 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+
+
+<main class="main-wrapper">
+    <div class="axil-contact-page-area axil-section-gap">
+        <div class="container">
+            <div class="axil-contact-page">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="contact-form">
+                            <h3 class="title mb--10">Giriş Yapınız</h3>
+                            <form action="@Url.Action("Login","Home")" method="post" id="com-form-login" dir="ltr">
+                                @Html.AntiForgeryToken() <!-- Include Anti-Forgery Token -->
+                                <div class="row row--10">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="contact-email">E-mail <span>*</span></label>
+                                            <input type="email" asp-for="Email" id="contact-email" class="form-control" style="direction: ltr;" maxlength="100" required />
+                                        </div>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="contact-password">Şifre <span>*</span></label>
+                                            <input type="password" asp-for="Password" id="contact-password" class="form-control" style="direction: ltr;" maxlength="100" required />
+                                        </div>
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <!-- Centered Button Group -->
+                                  
+                                        <div class="form-group d-flex align-items-center justify-content-start gap-3 mt-3">
+                                            <!-- Login Button -->
+                                            <input type="submit" value="Giriş Yapınız" class="btn btn-primary btn-lg flex-fill" name="Submit">
+                                    </div>
+
+                                    
+                                           
+
+
+                                    <div class="form-group d-flex align-items-center justify-content-start gap-3 mt-3">
+                                        <!-- Register Button -->
+                                            <a href="@Url.Action("Register","Home")" class="btn btn-secondary btn-lg flex-fill">Veya Üye Olunuz</a>
+                                    </div>
+                                 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+

@@ -1,0 +1,371 @@
+﻿@model MainPageModel
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<main class="main-wrapper">
+
+	<!-- Start Slider Area -->
+	<div class="axil-main-slider-area main-slider-style-7 bg_image--8">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-sm-8">
+					<div class="main-slider-content">
+						<span class="subtitle"></span>
+						<h1 class="title" style="color: bisque;">
+							Koleksiyonumuza  Göz Atın
+						</h1>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Slider Area 
+
+
+	<!-- Start NewProducts Product Area  -->
+	<div class="axil-best-seller-product-area bg-color-white axil-section-gap pb--0">
+		<div class="container">
+			<div class="product-area pb--50">
+				<div class="section-title-wrapper">
+					<a href="/Home/NewProducts">
+					<h2 class="title heading-shadow">YENİ ÜRÜNLER</h2>
+					</a>
+				</div>
+				<div class="new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile">
+
+
+					@foreach (var item in Model.NewProducts)
+					{
+						<div class="slick-single-layout">
+							<div class="axil-product product-style-three">
+								<div class="thumbnail">
+									<a href="/Home/Details/@item.ProductID">
+										<img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="/resimler/@item.PhotoPath" alt="Product Images">
+									</a>
+									<div class="product-hover-action">
+										<ul class="cart-action">
+
+											<li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+											<li class="quickview"><a href="/Home/Details/@item.ProductID" ><i class="far fa-eye"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="product-content">
+									<div class="inner">
+
+										<h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+										<div class="product-price-variant">
+											<span>@item.UnitPrice</span>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+
+					<!-- End .slick-single-layout -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End NewProducts Product Area  -->
+
+	<!-- Start TopSellers Product Area  -->
+	<div class="axil-new-arrivals-product-area bg-color-white ">
+		<div class="container">
+			<div class="section-title-wrapper">
+				<a href="/Home/TopsellerProducts">
+				<h2 class="title heading-shadow">ÇOK SATANLAR</h2>
+				</a>
+			</div>
+			<div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
+
+				@foreach (var item in Model.TopsellerProducts)
+				{
+					<div class="slick-single-layout">
+						<div class="axil-product product-style-two has-color-pick">
+							<div class="thumbnail">
+								<a href="/Home/Details/@item.ProductID">
+									<img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="/resimler/@item.PhotoPath" alt="Product Images">
+								</a>
+
+							</div>
+							<div class="product-content">
+								<div class="inner">
+
+									<h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+									<div class="product-price-variant">
+										<span>@item.UnitPrice</span>
+
+									</div>
+								</div>
+								<div class="product-hover-action">
+									<ul class="cart-action justify-content-center">
+										<li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+										<li class="quickview"><a href="/Home/Details/@item.ProductID"><i class="far fa-eye"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+
+				<!-- End .slick-single-layout -->
+
+			</div>
+		</div>
+	</div>
+	<!-- End TopSellers Product Area  -->
+
+
+	<!-- Start SpecialProducts Product Area  -->
+	<div class="axil-best-seller-product-area bg-color-white axil-section-gap pb--0">
+		<div class="container">
+			<div class="product-area pb--50">
+				<div class="section-title-wrapper">
+					<a href="/Home/SpecialProducts">
+					<h2 class="title heading-shadow">ÖZEL ÜRÜNLER</h2>
+					</a>
+				</div>
+				<div class="new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile">
+
+
+					@foreach (var item in Model.SpecialProducts)
+					{
+						<div class="slick-single-layout">
+							<div class="axil-product product-style-three">
+								<div class="thumbnail">
+									<a href="/Home/Details/@item.ProductID">
+										<img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="/resimler/@item.PhotoPath" alt="Product Images">
+									</a>
+									<div class="product-hover-action">
+										<ul class="cart-action">
+
+											<li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+											<li class="quickview"><a href="/Home/Details/@item.ProductID"><i class="far fa-eye"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="product-content">
+									<div class="inner">
+
+										<h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+										<div class="product-price-variant">
+											<span>@item.UnitPrice</span>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+
+					<!-- End .slick-single-layout -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End SpecialProducts Product Area  -->
+
+	<!-- Start Axil DiscountedProduct Poster Area  -->
+	<div class="axil-poster ">
+		<div class="container">
+			<div class="row g-lg-5 g-4">
+
+				<div class="col-lg-4">
+					<a href="/Home/DiscountedProducts">
+					<h2 class="title heading-shadow">İNDİRİMLİ ÜRÜNLER</h2>
+					</a>
+					<div class="single-poster">
+						<a href="/Home/DiscountedProducts">
+							<img class="first-img" src="~/resimler/indirimicin.jpg" style="height:400px; width:370px" />
+							<div class="poster-content">
+								<div class="inner">
+									
+									<span class="sub-title">Koleksiyonumuz... <i class="fal fa-long-arrow-right"></i></span>
+								</div>
+							</div>
+							<!-- End .poster-content -->
+						</a>
+					</div>
+					<!-- End .single-poster -->
+				</div>
+
+				<div class="col-lg-4">
+					<div class="single-poster">
+
+						<img src="~/resimler/indirim.jpg" style="height:400px; width:900px" alt="eTrade promotion poster">
+							
+						
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Axil DiscountedProduct Poster Area  -->
+
+	<!-- Start Highlighted Product Area  -->
+	<div class="axil-new-arrivals-product-area bg-color-white axil-section-gap pb--50">
+		<div class="container">
+			<div class="section-title-wrapper">
+				<a href="/Home/HighlightedProducts">
+				<h2 class="title heading-shadow"">ÖNE ÇIKANLAR</h2>
+				</a>
+			</div>
+			<div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
+
+				@foreach (var item in Model.HighlightedProducts)
+				{
+					<div class="slick-single-layout">
+						<div class="axil-product product-style-two has-color-pick">
+							<div class="thumbnail">
+								<a href="/Home/Details/@item.ProductID">
+									<img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="/resimler/@item.PhotoPath" alt="Product Images">
+								</a>
+
+							</div>
+							<div class="product-content">
+								<div class="inner">
+
+									<h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+									<div class="product-price-variant">
+										<span>@item.UnitPrice</span>
+
+									</div>
+								</div>
+								<div class="product-hover-action">
+									<ul class="cart-action justify-content-center">
+										<li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+										<li class="quickview"><a href="/Home/Details/@item.ProductID"><i class="far fa-eye"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+
+				<!-- End .slick-single-layout -->
+
+			</div>
+		</div>
+	</div>
+	<!-- End  Highlighted Product Area  -->
+
+	<!-- Start NoticeableProducts Product Area  -->
+	<div class="axil-best-seller-product-area bg-color-white axil-section-gap pb--0">
+		<div class="container">
+			<div class="product-area pb--50">
+				<div class="section-title-wrapper">
+					<a href="/Home/NotableProducts">
+					<h2 class="title heading-shadow">DİKKAT ÇEKEN ÜRÜNLER</h2>
+					</a>
+				</div>
+				<div class="new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile">
+
+
+				@foreach (var item in Model.NotableProducts)
+				{
+						<div class="slick-single-layout">
+							<div class="axil-product product-style-three">
+								<div class="thumbnail">
+									<a href="/Home/Details/@item.ProductID">
+										<img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="/resimler/@item.PhotoPath" alt="Product Images">
+									</a>
+									<div class="product-hover-action">
+										<ul class="cart-action">
+
+											<li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+											<li class="quickview"><a href="/Home/Details/@item.ProductID"><i class="far fa-eye"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="product-content">
+									<div class="inner">
+
+										<h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+										<div class="product-price-variant">
+											<span>@item.UnitPrice</span>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				}
+
+					<!-- End .slick-single-layout -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End NoticeableProducts Product Area  -->
+
+	<!-- Start Oppotunity Product Area  -->
+	<div class="axil-new-arrivals-product-area bg-color-white ">
+		<div class="container">
+			<div class="section-title-wrapper">
+				<a href="/Home/OpportunityProducts">
+				<h2 class="title heading-shadow">FIRSAT ÜRÜNLERİ</h2>
+				</a>
+			</div>
+			<div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
+
+				@foreach (var item in Model.OpportunityProducts)
+				{
+					<div class="slick-single-layout">
+						<div class="axil-product product-style-two has-color-pick">
+							<div class="thumbnail">
+								<a href="/Home/Details/@item.ProductID">
+									<img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="/resimler/@item.PhotoPath" alt="Product Images">
+								</a>
+
+							</div>
+							<div class="product-content">
+								<div class="inner">
+
+									<h5 class="title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h5>
+									<div class="product-price-variant">
+										<span>@item.UnitPrice</span>
+
+									</div>
+								</div>
+								<div class="product-hover-action">
+									<ul class="cart-action justify-content-center">
+										<li class="select-option"><a href="/Home/CartProcess/@item.ProductID">Sepete Ekle</a></li>
+										<li class="quickview"><a href="/Home/Details/@item.ProductID"><i class="far fa-eye"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+
+				<!-- End .slick-single-layout -->
+
+			</div>
+		</div>
+	</div>
+	<!-- End TopSellers Product Area  -->
+
+	@await Component.InvokeAsync("Brands")
+
+
+</main>
+
+
+
+
+
+

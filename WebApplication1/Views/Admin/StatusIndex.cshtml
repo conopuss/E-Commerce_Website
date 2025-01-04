@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Status>
+@{
+	ViewData["Title"] = "StatusIndex";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<p>
+
+	<a asp-action="StatusCreate" asp-controller="Admin" class="btn btn-success">
+		YENİ STATÜ
+	</a>
+</p>
+
+
+<div class="row">
+	<div class="col-md-10">
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					STATÜ LİSTESİ
+				</div>
+
+			</div>
+
+
+			<div class="portlet-body">
+				<div class="table-scrollable">
+					<table class="table table-hover">
+						<thead>
+							<tr style="background-color:gray;color:white">
+								<th>
+									@Html.DisplayNameFor(model => model.StatusID)
+								</th>
+
+
+								<th>
+									@Html.DisplayNameFor(model => model.StatusName)
+								</th>
+
+
+								<th>
+									@Html.DisplayNameFor(model => model.Active)
+								</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										@Html.DisplayFor(model => item.StatusID)
+									</td>
+									<td>
+
+										<span style="font-weight: bold;font-size:18px;">@Html.DisplayFor(model => item.StatusName)</span>
+									</td>
+
+
+
+
+									@if (item.Active)
+									{
+										<td>
+											<div style="background-color:green;color:white;display:inline-block;padding:6px;">
+												<label style="font-weight: bold">Aktif</label>
+											</div>
+										</td>
+									}
+									else
+									{
+										<td>
+											<div style="background-color:red;color:white;display:inline-block;padding:6px;">
+												<label style="font-weight: bold">Pasif</label>
+											</div>
+										</td>
+									}
+									<td>
+										<a asp-action="StatusEdit" asp-route-id="@item.StatusID" class="label label-info">Düzelt</a>
+										<a asp-action="StatusDetails" asp-route-id="@item.StatusID" class="label label-warning">Detay</a>
+										<a asp-action="StatusDelete" asp-route-id="@item.StatusID" class="label label-danger">SİL</a>
+									</td>
+
+
+									@*  turner if
+								<td class="@(item.Active ? "AKTİF" : "PASİF" )">
+								@Html.DisplayFor(modelItem => item.Active)
+								</td>
+								*@
+
+								</tr>
+
+							}
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- END SAMPLE TABLE PORTLET-->
+	</div>
+</div>
+
+
+

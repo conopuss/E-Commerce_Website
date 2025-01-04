@@ -1,0 +1,69 @@
+﻿@model Category
+
+@{
+	ViewData["Title"] = "CategoryDetails";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+
+	<div class="col-md-2"></div>
+
+	<div class="col-md-8">
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<span style="background-color:red;color:white;">@Model.CategoryName </span>KATEGORİSİNİN BİLGİLERİ @ViewBag.ProductCount ADET ÜRÜN
+				</div>
+
+			</div>
+			<div class="portlet-body flip-scroll">
+				<table class="table table-bordered table-striped table-condensed flip-content">
+					<thead class="flip-content">
+						<tr>
+							<th width="20%">
+								@Html.DisplayNameFor(model => model.CategoryID)
+							</th>
+							<td>
+								@Html.DisplayFor(model => model.CategoryID)
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								@Html.DisplayNameFor(model => model.CategoryName)
+							</th>
+							<td>
+								@Html.DisplayFor(model => model.CategoryName)
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								@Html.DisplayNameFor(model => model.ParentID)
+							</th>
+							<td>
+								@Html.DisplayFor(model => model.ParentID)
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">
+								@Html.DisplayNameFor(model => model.Active)
+							</th>
+							<td>
+								@Html.DisplayFor(model => model.Active)
+							</td>
+						</tr>
+					</thead>
+				</table>
+				<a asp-action="CategoryIndex" class="btn btn-primary">KATEGORİ LİSTESİ</a>
+			</div>
+		</div>
+		<!-- END SAMPLE TABLE PORTLET-->
+
+	</div>
+</div>
+<!-- END PAGE CONTENT-->

@@ -1,0 +1,144 @@
+﻿@{
+	ViewData["Title"] = "Cart";
+	Layout = "~/Views/Shared/DefaultLayout.cshtml";
+	decimal kdvdahil = 0;
+	int count = 0;
+	int totalQuantity = 0;
+	decimal totalUnitprice = 0;
+	decimal kdvharic = 0;
+	decimal totalkdv = 0;
+}
+
+
+
+<main class="main-wrapper">
+
+	<!-- Start Cart Area  -->
+	<div class="axil-product-cart-area axil-section-gap">
+		<div class="container">
+			<div class="axil-product-cart-wrap">
+
+				<h4 class="heading-shadow" style="padding-right:1175px;  ">SEPETİM</h4>
+				<div style="border-bottom: 1px solid #000; margin-top: 10px; margin-bottom: 20px; width: 100%;"></div>
+					@if (ViewBag.Sepetim.Count > 0)
+				{
+					<div class="table-responsive">
+						<table class="table axil-product-table axil-cart-table mb--40">
+							<thead>
+								<tr>
+									<th scope="col" class="product-remove"></th>
+									<th scope="col" class="product-thumbnail heading-shadow">ÜRÜN</th>
+									<th scope="col" class="product-title"></th>
+									<th scope="col" class="product-price heading-shadow">BİRİM FİYAT</th>
+									<th scope="col" class="product-price heading-shadow">KDV</th>
+									<th scope="col" class="product-quantity heading-shadow">ADET</th>
+									<th scope="col" class="product-subtotal heading-shadow">TOPLAM FİYAT</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								@foreach (var item in ViewBag.Sepetim as IList<Cls_Order>)
+								{
+									<tr>
+										<td class="product-remove"><a href="@Url.Action("Cart" , new { ProductID = item.ProductID })" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
+										<td class="product-thumbnail"><a href="/Home/Details/@item.ProductID"><img src="~/resimler/@item.PhotoPath" alt="Digital Product"></a></td>
+
+										<td class="product-title"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></td>
+
+										<td class="product-price" data-title="Price"><span class="currency-symbol">TL</span>@item.UnitPrice</td>
+										<td class="product-price" data-title="Price"><span class="currency-symbol">%</span>@item.KDV</td>
+
+										<td class="product-quantity" data-title="Qty">
+											<span class="currency-symbol"></span>@item.Quantity
+										</td>
+
+										<td class="product-subtotal" data-title="Subtotal">
+											@{
+												kdvdahil = 0;
+												kdvdahil = Math.Round((((item.KDV * item.UnitPrice) / 100) + item.UnitPrice) * item.Quantity, 2);
+											}
+											<span class="currency-symbol">TL</span>@kdvdahil
+										</td>
+									</tr>
+								}
+
+
+							</tbody>
+						</table>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
+							<div class="axil-order-summery mt--80">
+								<h5 class="title mb--20 heading-shadow">SEPET ÖZETİ</h5>
+								<div class="summery-table-wrap">
+									<table class="table summery-table mb--30">
+										<tbody>
+											@{
+												kdvdahil = 0;
+												@foreach (var item in ViewBag.Sepetim as IList<Cls_Order>)
+												{
+													totalQuantity += item.Quantity;
+													totalUnitprice += item.UnitPrice;
+													kdvdahil += Math.Round((((item.KDV * item.UnitPrice) / 100) + item.UnitPrice) * item.Quantity, 2);
+													kdvharic += Math.Round((item.UnitPrice * item.Quantity), 2);
+													count++;
+
+												}
+												totalkdv = kdvdahil - kdvharic;
+											}
+
+
+
+											<tr class="order-subtotal">
+												<td>TUTAR</td>
+												<td>@kdvharic</td>
+											</tr>
+
+											<tr class="order-tax">
+												<td>KDV</td>
+												<td>@totalkdv</td>
+											</tr>
+											<tr class="order-total">
+												<td>TOPLAM</td>
+												<td class="order-total-amount">@kdvdahil</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<a href="@Url.Action("Order","Home")" class="axil-btn btn-bg-primary checkout-btn">Ödeme Adımına Geç</a>
+							</div>
+
+
+						</div>
+					</div>
+				}
+				else
+				{
+					<div class="order-details" style="border: 1px solid black; padding: 15px; direction: ltr;">
+						<table class="table-responsive">
+							<tbody>
+								<tr>
+									<td>Sepetinizde Ürün Bulunmamaktadır...</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				}
+				
+
+
+			</div>
+		
+		</div>
+	</div>
+	<!-- End Cart Area  -->
+
+</main>
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<main class="main-wrapper">
+    <div class="axil-contact-page-area axil-section-gap">
+        <div class="container">
+            <div class="axil-contact-page">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="contact-form">
+                            <h3 class="title mb--10">ÜYELİK BİLGİLERİNİZİ GİRİNİZ</h3>
+                            <form action="Register" method="post" id="com-form-login" dir="ltr">
+                                @Html.AntiForgeryToken() <!-- Include Anti-Forgery Token -->
+                                <div class="row row--10">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="contact-name">Ad Soyad <span>*</span></label>
+                                            <input type="text" asp-for="NameSurname" id="contact-name" class="form-control" style="direction: ltr;" maxlength="100" required />
+                                        </div>
+                                        <span asp-validation-for="NameSurname" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="contact-phone">Telefon <span>*</span></label>
+                                            <input type="text" asp-for="Telephone" id="contact-phone" class="form-control" style="direction: ltr;" />
+                                            <span asp-validation-for="Telephone" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="contact-email">E-mail <span>*</span></label>
+                                            <input type="email" asp-for="Email" id="contact-email" class="form-control" style="direction: ltr;" maxlength="100" required />
+                                        </div>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="contact-password">Şifre <span>*</span></label>
+                                            <input type="password" asp-for="Password" id="contact-password" class="form-control" style="direction: ltr;" maxlength="100" required />
+                                        </div>
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="contact-message">Adres</label>
+                                            <textarea asp-for="InvoiceAddress" id="contact-message" class="form-control" style="direction: ltr;" cols="1" rows="2"></textarea>
+                                        </div>
+                                        <span asp-validation-for="InvoiceAddress" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="submit_crt">
+                                            <input type="submit" value="Üye Ol" class="update_cart" name="Submit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

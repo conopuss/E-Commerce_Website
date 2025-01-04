@@ -1,0 +1,78 @@
+﻿@{
+	ViewData["Title"] = "CategoryEdit";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model Category
+
+<div class="row">
+
+	<div class="col-md-2"></div>
+
+	<div class="col-md-8 ">
+
+		<!-- BEGIN SAMPLE FORM PORTLET-->
+		<div class="portlet box blue ">
+			<div class="portlet-title">
+				<div class="caption">
+					KATEGORİ GÜNCELLEME FORMU
+				</div>
+
+			</div>
+			<div class="portlet-body form">
+				<form class="form-horizontal" role="form" action="/Admin/CategoryEdit" method="post">
+					<div class="form-body">
+
+						<div class="form-group">
+							<label class="col-md-3 control-label">Kategori Seçiniz</label>
+							<div class="col-md-9">
+
+								@*class="form-control input-lg"*@
+								@Html.DropDownList("ParentID", (IEnumerable<SelectListItem>)ViewData["categoryList"], "Seçiniz", new { @class = "form-control input-lg" })
+
+								<span asp-validation-for="ParentID" class="text-danger"></span>
+
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							@*<label class="col-md-3 control-label">Kategori Adı</label>*@
+							<label class="col-md-3 control-label" asp-for="CategoryName"></label>
+							<div class="col-md-9">
+								<input type="text" class="form-control input-lg" placeholder="Kategori girişi yapınız" asp-for="CategoryName">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-3 control-label">Aktif mi</label>
+							<div class="col-md-9">
+								<input asp-for="Active" class="form-control input-lg" />
+								<span asp-validation-for="Active" class="text-danger"></span>
+
+							</div>
+						</div>
+
+					</div>
+
+
+					<input type="hidden" asp-for="CategoryID" />
+
+
+
+					<div class="form-actions right1">
+						<a asp-action="CategoryIndex" class="btn btn-primary">KATEGORİ LİSTESİ</a>
+						<input type="submit" name="name" value="GÜNCELLE" class="btn btn-success" />
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- END SAMPLE FORM PORTLET-->
+
+
+	</div>
+
+</div>
+
+@* <partial name="_Notifications" /> *@
+
