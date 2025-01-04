@@ -1,5 +1,7 @@
 Eng:
+
 E-Commerce Website Project 
+
 Project Overview
 Developed an e-commerce website based on the "eTrade - eCommerce HTML Template" purchased from ThemeForest. The details of the project are as follows:
 Technology Usage
@@ -20,21 +22,7 @@ Project Link:  http://irmaksabuncu.com
 •	Admin User: admin@email.com / Password: 123
 •	General User: Use the "Sign Up" option or login with general@email.com / Password: 123
 
-AI-Powered Recipe Assistant 
-Project Overview
-Developed an AI-powered recipe assistant using ASP.NET MVC, available in both English and Turkish. This project integrates OpenAI's GPT API to generate personalized recipes based on user input, such as available ingredients or preferred cuisine. The prompt engineering design allows for easy expansion by adding more food-related entries.
-Features
-•	AI Integration: Generates recipe suggestions based on user input.
-•	Dynamic Filtering: Identifies non-recipe-related queries and informs the user.
-•	Responsive Design: Provides a mobile-friendly, fully responsive user interface.
-•	Cloud Deployment: The project is live on Azure App Service.
-Key Takeaways
-Through this project, I:
-•	Enhanced my ability to integrate AI technologies into web applications.
-•	Successfully deployed a cloud-based application.
-•	Designed a responsive and user-friendly interface.
 
-Project Link:      https://myaiproject-hte3amdgfdeufcfe.westeurope-01.azurewebsites.net/
 
 
 Tr:
